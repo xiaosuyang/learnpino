@@ -1,0 +1,1 @@
+/usr/bin/c++  -g  -rdynamic CMakeFiles/overview-simple.dir/overview-simple.o  -o overview-simple   -L/home/xsy/Desktop/try1/pinotry/build/robotwrapper  -lpinocchio robotwrapper/librobotwrapper.a -lpinocchio 

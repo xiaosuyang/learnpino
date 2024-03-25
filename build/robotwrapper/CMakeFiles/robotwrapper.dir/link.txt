@@ -1,0 +1,2 @@
+/usr/bin/ar qc librobotwrapper.a  CMakeFiles/robotwrapper.dir/robotwrapper.o
+/usr/bin/ranlib librobotwrapper.a

@@ -1,0 +1,6 @@
+/home/xsy/Desktop/try1/pinotry/build/CMakeFiles/rebuild_cache.dir
+/home/xsy/Desktop/try1/pinotry/build/CMakeFiles/edit_cache.dir
+/home/xsy/Desktop/try1/pinotry/build/CMakeFiles/overview-simple.dir
+/home/xsy/Desktop/try1/pinotry/build/robotwrapper/CMakeFiles/rebuild_cache.dir
+/home/xsy/Desktop/try1/pinotry/build/robotwrapper/CMakeFiles/edit_cache.dir
+/home/xsy/Desktop/try1/pinotry/build/robotwrapper/CMakeFiles/robotwrapper.dir

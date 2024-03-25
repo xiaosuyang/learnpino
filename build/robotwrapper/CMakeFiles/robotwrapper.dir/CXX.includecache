@@ -1,0 +1,32 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/home/xsy/Desktop/try1/pinotry/robotwrapper/robotwrapper.cpp
+robotwrapper.h
+/home/xsy/Desktop/try1/pinotry/robotwrapper/robotwrapper.h
+iostream
+-
+
+/home/xsy/Desktop/try1/pinotry/robotwrapper/robotwrapper.h
+pinocchio/multibody/model.hpp
+-
+pinocchio/parsers/urdf.hpp
+-
+pinocchio/algorithm/center-of-mass.hpp
+-
+pinocchio/algorithm/compute-all-terms.hpp
+-
+pinocchio/algorithm/jacobian.hpp
+-
+pinocchio/algorithm/frames.hpp
+-
+pinocchio/algorithm/centroidal.hpp
+-
+pinocchio/parsers/urdf.hpp
+/home/xsy/Desktop/try1/pinotry/robotwrapper/pinocchio/parsers/urdf.hpp
+
