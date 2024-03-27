@@ -11,7 +11,7 @@
 #include "robotwrapper/robotwrapper.h"
 
 #ifndef PINOCCHIO_MODEL_DIR
-  #define PINOCCHIO_MODEL_DIR "/home/xsy/Desktop/try1/urdftest/src/urdftest/example-robot-data/robots/ur_description/urdf/ur5_robot.urdf"
+  #define PINOCCHIO_MODEL_DIR "./model/ur5_robot.urdf"
 #endif
  
 int main()
@@ -25,18 +25,21 @@ int main()
   std::cout<<"model.nq(Dimension of the configuration vector representation.): "<<model.nq<<'\n';
   std::cout<<"model.nv(Dimension of the velocity vector space.): "<<model.nv<<'\n';
 
-  //RobotWrapper robot(urdf_filename);
+  RobotWrapper robot(urdf_filename);
 
-  pino::Data data(model);
-  Eigen::VectorXd q=Eigen::VectorXd::Ones(model.nq);
-  Eigen::VectorXd v = Eigen::VectorXd::Ones(model.nv);
+  pino::Data data(robot.m_model);
+  Eigen::VectorXd q=Eigen::VectorXd::Zero(model.nq);
+  Eigen::VectorXd v = Eigen::VectorXd::Zero(model.nv);
+  q[1]=M_PI;
+  v[1]=1;
 
-  pino::JointModelVariant jointv;
-  pinocchio::LOCAL;
+  robot.computeAllTerms(data,q,v);
 
-  jointv=pino::JointModelFreeFlyer();
+  std::cout<<"机器人质心位置:\n"<<robot.com(data)<<'\n';
+  std::cout<<"质心速度:\n"<<robot.com_vel(data)<<'\n';
+   std::cout<<"质心加速度:\n"<<robot.com_acc(data)<<'\n';
 
-  pino::forwardKinematics(model,data,q,v,0*v);
+
   pino::SE3 se3ins, se3in1;
   se3ins.setIdentity();
   std::cout<<"SE3 实例：\n"<<se3ins<<'\n';
@@ -47,17 +50,17 @@ int main()
   std::cout<<"After act:\n"<<se3ins.actInv(se3in1);
 
 
- std::cout << "frame size " << model.frames.size() << std::endl;
-  for(int i=0;i<model.frames.size();i++)
-  {
-    std::cout<<"frame "<<i<<'\n'<<model.frames[i].name<<std::endl;
-    std::cout<<"parent frame:\n"<<model.frames[model.frames[i].previousFrame].name<<'\n';
-    std::cout<<"parent join:\n"<<model.names[model.frames[i].parent]<<'\n';
-    std::cout<<"----------\n";
-    std::cout<<"相对parentjoint位姿:\n"<<model.frames[i].placement<<std::endl;
+//  std::cout << "frame size " << model.frames.size() << std::endl;
+//   for(int i=0;i<model.frames.size();i++)
+//   {
+//     std::cout<<"frame "<<i<<'\n'<<model.frames[i].name<<std::endl;
+//     std::cout<<"parent frame:\n"<<model.frames[model.frames[i].previousFrame].name<<'\n';
+//     std::cout<<"parent join:\n"<<model.names[model.frames[i].parent]<<'\n';
+//     std::cout<<"----------\n";
+//     std::cout<<"相对parentjoint位姿:\n"<<model.frames[i].placement<<std::endl;
   
     
-  }
+//   }
 
   
 

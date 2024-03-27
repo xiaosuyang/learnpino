@@ -10,8 +10,10 @@
 #include <pinocchio/algorithm/frames.hpp>
 #include <pinocchio/algorithm/centroidal.hpp>
 #include "pinocchio/parsers/urdf.hpp"
+#include "fwd.hpp"
 
 namespace pino = pinocchio;
+
 
 class RobotWrapper
 {
@@ -20,24 +22,31 @@ public:
   typedef pinocchio::Data Data;
   typedef pinocchio::Motion Motion;
   typedef pinocchio::Frame Frame;
+  typedef pinocchio::SE3 SE3;
+  typedef math::Vector Vector;
+  typedef math::Vector3 Vector3;
+  typedef math::Vector6 Vector6;
+  typedef math::Matrix Matrix;
+  typedef math::Matrix3x Matrix3x;
   typedef double Scalar;
   Motion frameClassicAcceleration(const Data &data,
                                   const Model::FrameIndex index) const;
   RobotWrapper(const std::string &filename,
-               const std::vector<std::string> &package_dirs,
                bool verbose = false);
 
   RobotWrapper(const std::string &filename,
-               const std::vector<std::string> &package_dirs,
                const pinocchio::JointModelVariant &rootJoint,
                bool verbose = false);
 
-  RobotWrapper(std::string modelname)
-  {
-    m_model_filename = modelname;
-    pino::urdf::buildModel(m_model_filename, m_model);
-  }
   void init();
+
+  const Vector3& com(const Data& data) const;
+  const Vector3& com_vel(const Data& data) const;
+  const Vector3& com_acc(const Data& data) const;
+
+  const SE3& position(const Data& data, const Model::JointIndex index) const;
+  const Motion& velocity(const Data& data, const Model::JointIndex index) const;
+  const Motion& acceleration(const Data& data, const Model::JointIndex index) const;
 
   pino::Model m_model;
   std::string m_model_filename;
