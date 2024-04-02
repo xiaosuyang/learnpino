@@ -53,6 +53,7 @@ typedef const Eigen::Ref<const Matrix> ConstRefMatrix;
 typedef std::size_t Index;
 
 
+
 }  // namespace math
 
 

@@ -10,6 +10,7 @@
 #include <pinocchio/algorithm/frames.hpp>
 #include <pinocchio/algorithm/centroidal.hpp>
 #include "pinocchio/parsers/urdf.hpp"
+#include <pinocchio/math/rpy.hpp>
 #include "fwd.hpp"
 
 namespace pino = pinocchio;
@@ -48,6 +49,19 @@ public:
   const Motion& velocity(const Data& data, const Model::JointIndex index) const;
   const Motion& acceleration(const Data& data, const Model::JointIndex index) const;
 
+  const Matrix& mass(const Data& data);
+  const Vector& nonLinearEffects(const Data& data) const;
+
+  void jacobianWorld(const Data& data, const Model::JointIndex index, Data::Matrix6x& J) const;
+  void jacobianLocal(const Data& data,const Model::JointIndex index,Data::Matrix6x& J) const;
+  void jacobianWorld_Aligned(const Data& data,const Model::JointIndex index,Data::Matrix6x& J) const;
+
+  SE3 framePosition(const Data& data,const Model::FrameIndex index) const;
+  Motion frameVelocity(const Data& data,const Model::FrameIndex index) const;
+  Motion frameAcceleration(const Data& data, const Model::FrameIndex index) const;
+
+  static Eigen::Vector4d rpytoquat(double roll,double pitch,double yaw);
+ 
   pino::Model m_model;
   std::string m_model_filename;
   int m_nq_actuated; /// dimension of the configuration space of the actuated
