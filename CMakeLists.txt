@@ -8,6 +8,8 @@ set(CMAKE_BUILD_TYPE "Debug")
 
 message("sssssssssssssssssssssssssssssssssssss")
 message("Eigen3 include directory: ${EIGEN3_INCLUDE_DIRS}")
+message("xiugai le yi ci")
+
 include_directories( ${EIGEN3_INCLUDE_DIRS})
 
 OPTION(IF_BUILDREDUCE OFF)
